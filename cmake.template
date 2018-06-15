@@ -1,7 +1,7 @@
 set(TF_TARGET_NAME "TensorflowCC")
 
 set(TF_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR})
-set(TensorflowCC_INCLUDE_PATH "${TF_MODULE_PATH}/include")
+set(TF_INCLUDE_PATH "${TF_MODULE_PATH}/include")
 set(TF_LIB_PATH "${TF_MODULE_PATH}/libs/libtensorflow_cc.so" "${TF_MODULE_PATH}/libs/libtensorflow_framework.so")
 
 find_package(Protobuf REQUIRED)
@@ -19,7 +19,7 @@ include_directories(
 target_include_directories(
     ${TF_TARGET_NAME}
     INTERFACE
-    ${TensorflowCC_INCLUDE_PATH}
+    ${TF_INCLUDE_PATH}
     ${PROTOBUF_INCLUDE_DIR}
 )
 

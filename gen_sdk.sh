@@ -61,8 +61,12 @@ function createSDK()
     mkdir -p $SDK_DIR/include/external/eigen_archive/Eigen
     mkdir -p $SDK_DIR/include/external/eigen_archive/unsupported
 
+    echo "Copying the libraries .."
+
     # copy/sync the libs
     rsync $REPO_DIR/bazel-bin/tensorflow/{libtensorflow_cc.so,libtensorflow_framework.so} $SDK_DIR/libs
+
+    echo "Copying the headers .."
 
     # copy/sync the main directory (need to figure out if there is a better option than this)
     rsync -r $REPO_DIR/tensorflow $SDK_DIR/include/
@@ -99,7 +103,11 @@ function run
 
   createSDK
 
+  echo "Copying CMakeLists.txt .."
+
   cp cmake.template $SDK_DIR/CMakeLists.txt
+
+  echo "All done !"
 }
 
 run "$@";
