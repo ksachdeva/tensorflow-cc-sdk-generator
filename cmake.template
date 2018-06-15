@@ -1,0 +1,32 @@
+set(TF_TARGET_NAME "TensorflowCC")
+
+set(TF_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR})
+set(TensorflowCC_INCLUDE_PATH "${TF_MODULE_PATH}/include")
+set(TF_LIB_PATH "${TF_MODULE_PATH}/libs/libtensorflow_cc.so" "${TF_MODULE_PATH}/libs/libtensorflow_framework.so")
+
+find_package(Protobuf REQUIRED)
+
+add_library(${TF_TARGET_NAME} INTERFACE)
+add_library(third-party::tensorflow-cc ALIAS ${TF_TARGET_NAME})
+
+# normally should not do this
+# but had trouble with XCode with out it
+# TODO - investigate again
+include_directories(
+	${PROTOBUF_INCLUDE_DIR}
+)
+
+target_include_directories(
+    ${TF_TARGET_NAME}
+    INTERFACE
+    ${TensorflowCC_INCLUDE_PATH}
+    ${PROTOBUF_INCLUDE_DIR}
+)
+
+target_link_libraries(
+    ${TF_TARGET_NAME}
+    INTERFACE
+    ${TF_LIB_PATH}
+)
+
+enable_testing ()
