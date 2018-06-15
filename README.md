@@ -5,7 +5,7 @@
 It is quite strange that a project of status like tensorflow does not provide an offically generated development package.
 
 Here is an attempt to generate a *sort* of SDK. I have made few assumptions and the directory structure of the generated SDK is based
-on the *include* folder that ships with the python package. 
+on the *include* folder that ships with the tensorflow python package.
 
 ## Building tensorflow on your machine
 
@@ -29,12 +29,12 @@ The tensorflow-sdk contains 3 main items -:
 
 * *include* directory that contains the header files
 * *libs* directory that contains libtensorflow_cc.so & libtensorflow_framework.so shared libraries
-* *CMakeLists.txt* file that exposes an INTERFACE only module with an alias *third-party::tensorflow-cc*
+* *CMakeLists.txt* file that exposes an INTERFACE only CMake module with an alias *third-party::tensorflow-cc*
 
 ## Example usage
 
-The *example* folder contains a project structure that I generally use. As you noticed the generation command created the SDK
-in third-party folder.
+The *example* folder contains a project structure that I generally use. Notice that the above example generation command created the SDK
+in the example/third-party folder.
 
 This example project uses CMake as a build system.
 
